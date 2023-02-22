@@ -44,6 +44,6 @@ app.use((error, req, res, next) => {
     res.json(error.message || "Unexpected error occured!!!");
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log("Server started at", PORT);
 });
