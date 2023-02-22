@@ -1,0 +1,8 @@
+{
+    "env": {
+        "DB_USER": "manish",
+        "DB_PASSWORD": "manish",
+        "DB_NAME": "todos",
+        "JWT_KEY": "afdlkakjsdfkjh387347jkfdskj"
+    }
+}
