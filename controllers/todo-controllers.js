@@ -112,7 +112,7 @@ const deleteTodoById = async (req, res, next) => {
         return next(error);
     }
 
-    const result = await Todo.deleteOne({ _id: todoId });
+    const result = Todo.deleteOne({ _id: todoId });
     res.json({ message: "Todo deleted.", data: result });
 };
 
@@ -160,7 +160,7 @@ const updateTodoById = async (req, res, next) => {
         return next(error);
     }
 
-    const result = await Todo.updateOne({ _id: todoId }, updatedTodo);
+    const result = Todo.updateOne({ _id: todoId }, updatedTodo);
     res.json({ message: "Todo updated.", data: result });
 };
 const updateTodoCompleted = async (req, res, next) => {
@@ -189,10 +189,7 @@ const updateTodoCompleted = async (req, res, next) => {
         return next(error);
     }
 
-    const result = await Todo.updateOne(
-        { _id: todoId },
-        { completed: isCompleted }
-    );
+    const result = Todo.updateOne({ _id: todoId }, { completed: isCompleted });
     res.json({ message: "Todo updated.", data: result });
 };
 

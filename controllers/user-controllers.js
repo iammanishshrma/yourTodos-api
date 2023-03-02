@@ -53,5 +53,41 @@ const login = async (req, res, next) => {
     }
 };
 
+const getUserInfo = async (req, res, next) => {
+    try {
+        const authToken = req.headers.authorization;
+
+        const userId = await jwt.verify(authToken, process.env.JWT_KEY).id;
+
+        const existingUser = await User.findById(userId).exec();
+        const response = existingUser.toObject();
+        delete response.password;
+        res.json(response);
+    } catch (error) {
+        res.status(400).json("Some error occured");
+    }
+};
+
+const updateUser = async (req, res, next) => {
+    console.log(req.body);
+    try {
+        const authToken = req.headers.authorization;
+
+        const userId = await jwt.verify(authToken, process.env.JWT_KEY).id;
+        if (!userId) {
+            res.status(400).json("User not found!!!");
+        }
+
+        const existingUser = await User.findById(userId).exec();
+        const response = existingUser.toObject();
+        delete response.password;
+        res.json(response);
+    } catch (error) {
+        res.status(400).json("Some error occured");
+    }
+};
+
 exports.signUp = signUp;
 exports.login = login;
+exports.getUserInfo = getUserInfo;
+exports.updateUser = updateUser;

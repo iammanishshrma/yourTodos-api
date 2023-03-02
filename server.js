@@ -16,9 +16,10 @@ const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@c
 mongoose
     .connect(dbUrl)
     .then(() => console.log("Database connected"))
-    .catch(() =>
-        console.log("Some error occured while connecting to database")
-    );
+    .catch((error) => {
+        console.log("dbUrl", dbUrl);
+        console.log("Some error occured while connecting to database", error);
+    });
 
 app.use(cors());
 
